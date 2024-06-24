@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: gray;
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  padding: 0px 60px;
+  transform-style: preserve-3d;
+  transform: perspective(2000px);
+}
+
+.item {
+  width: 10%;
+  aspect-ratio: 9/16;
+  filter: brightness(0);
+  transition: 0.5s;
+}
+.item img {
+  width: 100%;
+  aspect-ratio: 9/16;
+  object-fit: fill;
+  border-radius: 8px;
+}
+
+.item:hover {
+  filter: brightness(1);
+  transform: translateZ(200px);
+}
+.item:hover + * {
+  filter: brightness(0.6);
+  transform: translateZ(150px) rotateY(40deg);
+}
+.item:hover + * + * {
+  filter: brightness(0.4);
+  transform: translateZ(70px) rotateY(20deg);
+}
+.item:hover + * + * + * {
+  filter: brightness(0.3);
+  transform: translateZ(30px) rotateY(10deg);
+}
+
+.item:has(+ * + *:hover) {
+  filter: brightness(0.4);
+  transform: translateZ(70px) rotateY(-20deg);
+}
+.item:has(+ *:hover) {
+  filter: brightness(0.6);
+  transform: translateZ(150px) rotateY(-40deg);
+}
+
+.item:has(+ * + * + *:hover) {
+  filter: brightness(0.3);
+  transform: translateZ(30px) rotateY(-10deg);
+}
